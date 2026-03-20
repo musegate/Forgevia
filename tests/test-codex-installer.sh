@@ -44,6 +44,7 @@ assert_contains "$installer_help" "Install Forgevia Codex assets"
 assert_contains "$installer_help" "$MANIFEST"
 assert_contains "$doctor_help" "Check Forgevia Codex managed assets"
 assert_contains "$doctor_help" "$MANIFEST"
+assert_contains "$doctor_help" "--repair"
 
 tmp_dir="$(mktemp -d)"
 trap 'rm -rf "$tmp_dir"' EXIT
@@ -56,13 +57,20 @@ mkdir -p "$CODEX_HOME/superpowers/skills/executing-plans"
 mkdir -p "$CODEX_HOME/superpowers/skills/subagent-driven-development"
 mkdir -p "$CODEX_HOME/superpowers/skills/requesting-code-review"
 mkdir -p "$OPENSPEC_ROOT/dist/core"
+printf 'user local brainstorming\n' > "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md"
 printf 'export function serializeConfig() { return \"wrong\"; }\n' > "$OPENSPEC_ROOT/dist/core/config-prompts.js"
 
 installer_output="$("$INSTALLER")"
 assert_contains "$installer_output" "🧱 Forgevia Codex installer"
 assert_contains "$installer_output" "✅ Applied openspec override"
 assert_contains "$installer_output" "✅ Applied Forgevia-managed Codex assets"
+assert_contains "$installer_output" "💾 Backed up"
 assert_contains "$installer_output" "🎉 Forgevia Codex install complete"
+
+test_file_exists "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md.forgevia.bak"
+assert_contains "$(cat "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md.forgevia.bak")" "user local brainstorming"
+test_file_exists "$OPENSPEC_ROOT/dist/core/config-prompts.js.forgevia.bak"
+assert_contains "$(cat "$OPENSPEC_ROOT/dist/core/config-prompts.js.forgevia.bak")" "wrong"
 
 doctor_output="$("$DOCTOR")"
 assert_contains "$doctor_output" "🔎 Forgevia Codex doctor"
@@ -85,5 +93,13 @@ set -e
 assert_exit_code "$drift_status" "1"
 assert_contains "$drift_output" "❌ DRIFT"
 assert_contains "$drift_output" "📋 Summary"
+
+repair_output="$("$DOCTOR" --repair)"
+assert_contains "$repair_output" "🛠️ Repairing drifted or missing assets"
+assert_contains "$repair_output" "✅ Repaired"
+
+post_repair_output="$("$DOCTOR")"
+assert_contains "$post_repair_output" "✨ No drift detected"
+assert_contains "$post_repair_output" "Forgevia Codex doctor passed"
 
 echo "codex installer smoke test passed"

@@ -41,6 +41,10 @@ log_success() {
   echo "✅ $1"
 }
 
+log_backup() {
+  echo "💾 $1"
+}
+
 require_command() {
   local command_name="$1"
   if ! command -v "$command_name" >/dev/null 2>&1; then
@@ -56,6 +60,27 @@ copy_path() {
   mkdir -p "$(dirname "$target_path")"
   rm -rf "$target_path"
   cp -R "$source_path" "$target_path"
+}
+
+backup_target_if_present() {
+  local target_path="$1"
+  local backup_path="${target_path}.forgevia.bak"
+
+  if [[ ! -e "$target_path" ]]; then
+    return
+  fi
+
+  rm -rf "$backup_path"
+  cp -R "$target_path" "$backup_path"
+  log_backup "Backed up $target_path -> $backup_path"
+}
+
+sync_path() {
+  local source_path="$1"
+  local target_path="$2"
+
+  backup_target_if_present "$target_path"
+  copy_path "$source_path" "$target_path"
 }
 
 install_openspec_if_missing() {
@@ -97,13 +122,13 @@ EOF
 overlay_assets() {
   log_step "Overlaying Forgevia-managed assets into $CODEX_ROOT"
 
-  copy_path "$ASSETS_DIR/skills/forgevia" "$CODEX_ROOT/skills/forgevia"
-  copy_path "$ASSETS_DIR/skills/playwright-interactive" "$CODEX_ROOT/skills/playwright-interactive"
-  copy_path "$ASSETS_DIR/superpowers/skills/brainstorming/SKILL.md" "$CODEX_ROOT/superpowers/skills/brainstorming/SKILL.md"
-  copy_path "$ASSETS_DIR/superpowers/skills/writing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/writing-plans/SKILL.md"
-  copy_path "$ASSETS_DIR/superpowers/skills/executing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/executing-plans/SKILL.md"
-  copy_path "$ASSETS_DIR/superpowers/skills/subagent-driven-development" "$CODEX_ROOT/superpowers/skills/subagent-driven-development"
-  copy_path "$ASSETS_DIR/superpowers/skills/requesting-code-review" "$CODEX_ROOT/superpowers/skills/requesting-code-review"
+  sync_path "$ASSETS_DIR/skills/forgevia" "$CODEX_ROOT/skills/forgevia"
+  sync_path "$ASSETS_DIR/skills/playwright-interactive" "$CODEX_ROOT/skills/playwright-interactive"
+  sync_path "$ASSETS_DIR/superpowers/skills/brainstorming/SKILL.md" "$CODEX_ROOT/superpowers/skills/brainstorming/SKILL.md"
+  sync_path "$ASSETS_DIR/superpowers/skills/writing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/writing-plans/SKILL.md"
+  sync_path "$ASSETS_DIR/superpowers/skills/executing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/executing-plans/SKILL.md"
+  sync_path "$ASSETS_DIR/superpowers/skills/subagent-driven-development" "$CODEX_ROOT/superpowers/skills/subagent-driven-development"
+  sync_path "$ASSETS_DIR/superpowers/skills/requesting-code-review" "$CODEX_ROOT/superpowers/skills/requesting-code-review"
   log_success "Applied Forgevia-managed Codex assets"
 }
 
@@ -116,7 +141,7 @@ overlay_openspec_assets() {
     exit 1
   fi
 
-  copy_path "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js" "$openspec_root/dist/core/config-prompts.js"
+  sync_path "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js" "$openspec_root/dist/core/config-prompts.js"
   log_success "Applied openspec override: $openspec_root/dist/core/config-prompts.js"
 }
 
