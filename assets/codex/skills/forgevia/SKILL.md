@@ -78,7 +78,7 @@ Required checks:
 Behavior:
 - treat the named change as the source of truth
 - use superpowers to complete the development for the named change
-- require a TDD-oriented implementation path
+- explicitly invoke `superpowers:test-driven-development` during implementation rather than treating TDD as implicit
 - prefer `subagent-driven-development` or `executing-plans` based on the task structure
 - use `requesting-code-review` at dependency-ready checkpoints
 

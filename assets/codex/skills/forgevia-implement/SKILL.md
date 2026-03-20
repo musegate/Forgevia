@@ -17,7 +17,8 @@ Use this skill only when the user explicitly names a change to implement.
 - Verify the change is not archived.
 - Verify the change has `tasks.md`.
 - Use superpowers to complete the development for the named change.
-- Require a TDD-oriented execution path throughout the implementation.
+- Require an explicit `superpowers:test-driven-development` execution path throughout the implementation.
+- Do not treat TDD as implicit or optional when implementing the change.
 - Use review checkpoints at dependency-ready task groups.
 
 Do not guess the change from conversation context.
