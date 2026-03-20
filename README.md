@@ -29,6 +29,31 @@ Claude is not supported yet.
 - `forgevia-doctor`: Inspect whether the Forgevia environment is healthy.
 - `forgevia-repair`: Repair missing or drifted Forgevia-managed assets.
 
+## How it works
+
+### Full workflow
+
+1. `Forgevia init / doctor / repair`
+   Prepare and verify the environment.
+2. `Forgevia think`
+   Clarify the requirement before implementation.
+3. `Forgevia propose`
+   Turn the requirement into a structured OpenSpec change.
+4. `Forgevia implement <change>`
+   Implement the named change with a structured development workflow.
+5. `Forgevia review`
+   Run a review checkpoint and sort issues by severity.
+6. `Forgevia verify-web`
+   Validate browser-facing behavior when the change touches web flows.
+7. `Forgevia archive <change>`
+   Sync the final spec and archive the completed change.
+
+### Simple workflow
+
+`think -> propose -> implement -> review -> verify-web (if needed) -> archive`
+
+Forgevia turns requirement shaping, structured implementation, review, verification, and closure into one consistent delivery workflow.
+
 ---
 
 # Forgevia
@@ -61,3 +86,28 @@ Forgevia 是一套面向 agent coding 的工作流整合方案。
 - `forgevia-archive`：归档一个已完成的活跃变更。
 - `forgevia-doctor`：检查 Forgevia 环境是否健康。
 - `forgevia-repair`：修复缺失或漂移的 Forgevia 受管资源。
+
+## 如何使用
+
+### 完整版链路
+
+1. `Forgevia init / doctor / repair`
+   准备并检查环境。
+2. `Forgevia think`
+   在开发前先澄清需求。
+3. `Forgevia propose`
+   将需求转换为结构化的 OpenSpec change。
+4. `Forgevia implement <change>`
+   基于指定 change 进入结构化开发。
+5. `Forgevia review`
+   发起评审检查点，并按严重级别收敛问题。
+6. `Forgevia verify-web`
+   当改动涉及 Web 页面或交互时，补充浏览器验证。
+7. `Forgevia archive <change>`
+   同步最终 spec，并归档已完成的 change。
+
+### 简版链路
+
+`think -> propose -> implement -> review -> verify-web（如需要）-> archive`
+
+Forgevia 把需求梳理、结构化开发、代码评审、效果验证和最终归档串成一条一致的交付流程。
