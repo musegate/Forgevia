@@ -162,6 +162,7 @@ main() {
     "$ASSETS_DIR/skills/forgevia-archive::$CODEX_ROOT/skills/forgevia-archive" \
     "$ASSETS_DIR/skills/forgevia-tasks::$CODEX_ROOT/skills/forgevia-tasks" \
     "$ASSETS_DIR/skills/forgevia-think::$CODEX_ROOT/skills/forgevia-think" \
+    "$ASSETS_DIR/skills/forgevia-propose::$CODEX_ROOT/skills/forgevia-propose" \
     "$ASSETS_DIR/skills/forgevia-review::$CODEX_ROOT/skills/forgevia-review" \
     "$ASSETS_DIR/skills/forgevia-verify-web::$CODEX_ROOT/skills/forgevia-verify-web" \
     "$ASSETS_DIR/skills/forgevia-draw::$CODEX_ROOT/skills/forgevia-draw" \

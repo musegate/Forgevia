@@ -81,6 +81,13 @@
       "kind": "skill-directory"
     },
     {
+      "id": "forgevia-propose-skill",
+      "source": "assets/codex/skills/forgevia-propose",
+      "target": "~/.codex/skills/forgevia-propose",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
       "id": "forgevia-review-skill",
       "source": "assets/codex/skills/forgevia-review",
       "target": "~/.codex/skills/forgevia-review",

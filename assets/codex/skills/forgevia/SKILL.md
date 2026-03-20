@@ -116,6 +116,17 @@ Behavior:
 - route to `openspec-explore`
 - use the user's requirement input as the exploration prompt
 
+### `Forgevia propose`
+
+Purpose:
+- turn a requirement description or specified file into a new OpenSpec change
+
+Behavior:
+- route to `openspec-propose`
+- accept either direct user description or a specified file as requirement input
+- use an explicit user-provided change name when available
+- otherwise derive a kebab-case change name from the requirement source
+
 ### `Forgevia review`
 
 Purpose:

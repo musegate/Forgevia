@@ -19,6 +19,7 @@ Claude is not supported yet.
 - `forgevia`: General entry for the Forgevia workflow.
 - `forgevia-init`: Prepare the current project for the Forgevia workflow.
 - `forgevia-think`: Clarify and shape a requirement before implementation.
+- `forgevia-propose`: Turn a requirement description or file into a new change proposal.
 - `forgevia-implement`: Implement one named active change with a structured workflow.
 - `forgevia-tasks`: List unfinished tasks across active changes.
 - `forgevia-review`: Run a focused review checkpoint for current work.
@@ -51,6 +52,7 @@ Forgevia 是一套面向 agent coding 的工作流整合方案。
 - `forgevia`：Forgevia 工作流的总入口。
 - `forgevia-init`：为当前项目准备 Forgevia 工作流环境。
 - `forgevia-think`：在开发前梳理和澄清需求。
+- `forgevia-propose`：将需求描述或指定文件转换为新的变更提案。
 - `forgevia-implement`：针对指定的活跃变更执行结构化开发。
 - `forgevia-tasks`：查看所有活跃变更下未完成的任务。
 - `forgevia-review`：对当前工作发起一次聚焦评审。
