@@ -29,6 +29,8 @@ BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
 HEAD_SHA=$(git rev-parse HEAD)
 ```
 
+Use explicit commit IDs whenever possible. Avoid vague review scopes like "latest changes" if a precise commit range is available.
+
 **2. Dispatch code-reviewer subagent:**
 
 Use Task tool with superpowers:code-reviewer type, fill template at `code-reviewer.md`
@@ -41,10 +43,12 @@ Use Task tool with superpowers:code-reviewer type, fill template at `code-review
 - `{DESCRIPTION}` - Brief summary
 
 **3. Act on feedback:**
-- Fix Critical issues immediately
-- Fix Important issues before proceeding
-- Note Minor issues for later
+- Fix `P0` issues immediately
+- Fix `P1` issues before proceeding
+- Note lower-severity follow-ups for later
 - Push back if reviewer is wrong (with reasoning)
+
+Require the review output to list findings in strict severity order. `P0` findings must appear before `P1`, and lower-severity items must not be mixed ahead of higher-severity items.
 
 ## Example
 
@@ -66,8 +70,8 @@ HEAD_SHA=$(git rev-parse HEAD)
 [Subagent returns]:
   Strengths: Clean architecture, real tests
   Issues:
-    Important: Missing progress indicators
-    Minor: Magic number (100) for reporting interval
+    P1: Missing progress indicators
+    P2: Magic number (100) for reporting interval
   Assessment: Ready to proceed
 
 You: [Fix progress indicators]
@@ -93,8 +97,8 @@ You: [Fix progress indicators]
 
 **Never:**
 - Skip review because "it's simple"
-- Ignore Critical issues
-- Proceed with unfixed Important issues
+- Ignore `P0` issues
+- Proceed with unfixed `P1` issues
 - Argue with valid technical feedback
 
 **If reviewer wrong:**

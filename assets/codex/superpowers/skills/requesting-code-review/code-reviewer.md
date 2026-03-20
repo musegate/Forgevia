@@ -6,7 +6,7 @@ You are reviewing code changes for production readiness.
 1. Review {WHAT_WAS_IMPLEMENTED}
 2. Compare against {PLAN_OR_REQUIREMENTS}
 3. Check code quality, architecture, testing
-4. Categorize issues by severity
+4. Categorize issues by severity, using `P0`, `P1`, then lower severities
 5. Assess production readiness
 
 ## What Was Implemented
@@ -67,20 +67,22 @@ git diff {BASE_SHA}..{HEAD_SHA}
 
 ### Issues
 
-#### Critical (Must Fix)
-[Bugs, security issues, data loss risks, broken functionality]
+#### P0
+[Release-blocking issues: broken behavior, security issues, data loss risks, or clear requirement violations]
 
-#### Important (Should Fix)
-[Architecture problems, missing features, poor error handling, test gaps]
+#### P1
+[Serious issues that should be fixed before proceeding: major test gaps, missing handling, significant design problems]
 
-#### Minor (Nice to Have)
-[Code style, optimization opportunities, documentation improvements]
+#### P2
+[Lower-severity follow-ups such as code quality, maintainability, or documentation improvements]
 
 **For each issue:**
 - File:line reference
 - What's wrong
 - Why it matters
 - How to fix (if not obvious)
+
+List findings in strict severity order. Do not place a `P1` item before a `P0` item, and do not mix `P2` items into the `P0`/`P1` sections.
 
 ### Recommendations
 [Improvements for code quality, architecture, or process]
@@ -95,14 +97,16 @@ git diff {BASE_SHA}..{HEAD_SHA}
 
 **DO:**
 - Categorize by actual severity (not everything is Critical)
+- Prefer `P0` and `P1` for primary findings, ordered strictly by severity
 - Be specific (file:line, not vague)
 - Explain WHY issues matter
 - Acknowledge strengths
 - Give clear verdict
+- Reference the reviewed commit range using the provided `BASE_SHA` and `HEAD_SHA`
 
 **DON'T:**
 - Say "looks good" without checking
-- Mark nitpicks as Critical
+- Mark nitpicks as `P0`
 - Give feedback on code you didn't review
 - Be vague ("improve error handling")
 - Avoid giving a clear verdict
@@ -117,7 +121,7 @@ git diff {BASE_SHA}..{HEAD_SHA}
 
 ### Issues
 
-#### Important
+#### P1
 1. **Missing help text in CLI wrapper**
    - File: index-conversations:1-31
    - Issue: No --help flag, users won't discover --concurrency
@@ -128,7 +132,7 @@ git diff {BASE_SHA}..{HEAD_SHA}
    - Issue: Invalid dates silently return no results
    - Fix: Validate ISO format, throw error with example
 
-#### Minor
+#### P2
 1. **Progress indicators**
    - File: indexer.ts:130
    - Issue: No "X of Y" counter for long operations
@@ -142,5 +146,5 @@ git diff {BASE_SHA}..{HEAD_SHA}
 
 **Ready to merge: With fixes**
 
-**Reasoning:** Core implementation is solid with good architecture and tests. Important issues (help text, date validation) are easily fixed and don't affect core functionality.
+**Reasoning:** Core implementation is solid with good architecture and tests. The `P1` issues (help text, date validation) are straightforward to fix and should be resolved before proceeding.
 ```
