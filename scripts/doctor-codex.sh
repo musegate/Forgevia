@@ -154,6 +154,7 @@ main() {
 
   for pair in \
     "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js::$openspec_root/dist/core/config-prompts.js" \
+    "$OPENSPEC_ASSETS_DIR/dist/core/templates/workflows/propose.js::$openspec_root/dist/core/templates/workflows/propose.js" \
     "$ASSETS_DIR/skills/forgevia::$CODEX_ROOT/skills/forgevia" \
     "$ASSETS_DIR/skills/forgevia-init::$CODEX_ROOT/skills/forgevia-init" \
     "$ASSETS_DIR/skills/forgevia-doctor::$CODEX_ROOT/skills/forgevia-doctor" \

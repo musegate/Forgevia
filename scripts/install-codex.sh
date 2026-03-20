@@ -154,7 +154,9 @@ overlay_openspec_assets() {
   fi
 
   sync_path "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js" "$openspec_root/dist/core/config-prompts.js"
+  sync_path "$OPENSPEC_ASSETS_DIR/dist/core/templates/workflows/propose.js" "$openspec_root/dist/core/templates/workflows/propose.js"
   log_success "Applied openspec override: $openspec_root/dist/core/config-prompts.js"
+  log_success "Applied openspec override: $openspec_root/dist/core/templates/workflows/propose.js"
 }
 
 main() {
