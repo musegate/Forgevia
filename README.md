@@ -27,7 +27,7 @@ Forgevia 是一套面向 Codex 的工作流整合方案，围绕 OpenSpec、supe
 直接对 Codex 说：
 
 ```text
-Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.codex.md
+帮我安装，交互过程请使用中文：Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.codex.md
 ```
 
 当前暂不支持 Claude。

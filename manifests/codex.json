@@ -32,6 +32,76 @@
       "kind": "skill"
     },
     {
+      "id": "forgevia-init-skill",
+      "source": "assets/codex/skills/forgevia-init",
+      "target": "~/.codex/skills/forgevia-init",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-doctor-skill",
+      "source": "assets/codex/skills/forgevia-doctor",
+      "target": "~/.codex/skills/forgevia-doctor",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-repair-skill",
+      "source": "assets/codex/skills/forgevia-repair",
+      "target": "~/.codex/skills/forgevia-repair",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-implement-skill",
+      "source": "assets/codex/skills/forgevia-implement",
+      "target": "~/.codex/skills/forgevia-implement",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-archive-skill",
+      "source": "assets/codex/skills/forgevia-archive",
+      "target": "~/.codex/skills/forgevia-archive",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-tasks-skill",
+      "source": "assets/codex/skills/forgevia-tasks",
+      "target": "~/.codex/skills/forgevia-tasks",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-check-task-skill",
+      "source": "assets/codex/skills/forgevia-check-task",
+      "target": "~/.codex/skills/forgevia-check-task",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-review-skill",
+      "source": "assets/codex/skills/forgevia-review",
+      "target": "~/.codex/skills/forgevia-review",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-verify-web-skill",
+      "source": "assets/codex/skills/forgevia-verify-web",
+      "target": "~/.codex/skills/forgevia-verify-web",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-draw-skill",
+      "source": "assets/codex/skills/forgevia-draw",
+      "target": "~/.codex/skills/forgevia-draw",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
       "id": "mermaid-diagram-specialist-skill",
       "source": "assets/codex/skills/mermaid-diagram-specialist",
       "target": "~/.codex/skills/mermaid-diagram-specialist",

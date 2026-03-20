@@ -155,6 +155,16 @@ main() {
   for pair in \
     "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js::$openspec_root/dist/core/config-prompts.js" \
     "$ASSETS_DIR/skills/forgevia::$CODEX_ROOT/skills/forgevia" \
+    "$ASSETS_DIR/skills/forgevia-init::$CODEX_ROOT/skills/forgevia-init" \
+    "$ASSETS_DIR/skills/forgevia-doctor::$CODEX_ROOT/skills/forgevia-doctor" \
+    "$ASSETS_DIR/skills/forgevia-repair::$CODEX_ROOT/skills/forgevia-repair" \
+    "$ASSETS_DIR/skills/forgevia-implement::$CODEX_ROOT/skills/forgevia-implement" \
+    "$ASSETS_DIR/skills/forgevia-archive::$CODEX_ROOT/skills/forgevia-archive" \
+    "$ASSETS_DIR/skills/forgevia-tasks::$CODEX_ROOT/skills/forgevia-tasks" \
+    "$ASSETS_DIR/skills/forgevia-check-task::$CODEX_ROOT/skills/forgevia-check-task" \
+    "$ASSETS_DIR/skills/forgevia-review::$CODEX_ROOT/skills/forgevia-review" \
+    "$ASSETS_DIR/skills/forgevia-verify-web::$CODEX_ROOT/skills/forgevia-verify-web" \
+    "$ASSETS_DIR/skills/forgevia-draw::$CODEX_ROOT/skills/forgevia-draw" \
     "$ASSETS_DIR/skills/mermaid-diagram-specialist::$CODEX_ROOT/skills/mermaid-diagram-specialist" \
     "$ASSETS_DIR/skills/playwright-interactive::$CODEX_ROOT/skills/playwright-interactive" \
     "$ASSETS_DIR/superpowers/skills/brainstorming/SKILL.md::$CODEX_ROOT/superpowers/skills/brainstorming/SKILL.md" \
