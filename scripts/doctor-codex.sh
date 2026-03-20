@@ -28,6 +28,23 @@ Checks:
 EOF
 }
 
+print_status() {
+  local status="$1"
+  local path="$2"
+
+  case "$status" in
+    OK)
+      echo "✅ OK    $path"
+      ;;
+    MISS)
+      echo "⚠️  MISS  $path"
+      ;;
+    DRIFT)
+      echo "❌ DRIFT $path"
+      ;;
+  esac
+}
+
 resolve_openspec_root() {
   if [[ -n "$OPENSPEC_ROOT" ]]; then
     echo "$OPENSPEC_ROOT"
@@ -44,26 +61,26 @@ compare_path() {
   local target_path="$2"
 
   if [[ ! -e "$target_path" ]]; then
-    echo "MISS $target_path"
+    print_status "MISS" "$target_path"
     return 1
   fi
 
   if [[ -d "$source_path" ]]; then
     if diff -qr "$source_path" "$target_path" >/dev/null 2>&1; then
-      echo "OK   $target_path"
+      print_status "OK" "$target_path"
       return 0
     fi
 
-    echo "DRIFT $target_path"
+    print_status "DRIFT" "$target_path"
     return 1
   fi
 
   if cmp -s "$source_path" "$target_path"; then
-    echo "OK   $target_path"
+    print_status "OK" "$target_path"
     return 0
   fi
 
-  echo "DRIFT $target_path"
+  print_status "DRIFT" "$target_path"
   return 1
 }
 
@@ -83,18 +100,28 @@ main() {
   esac
 
   local unhealthy=0
+  local healthy=0
   local openspec_root
 
+  echo "🔎 Forgevia Codex doctor"
   openspec_root="$(resolve_openspec_root)"
 
-  compare_path "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js" "$openspec_root/dist/core/config-prompts.js" || unhealthy=1
-  compare_path "$ASSETS_DIR/skills/forgevia" "$CODEX_ROOT/skills/forgevia" || unhealthy=1
-  compare_path "$ASSETS_DIR/skills/playwright-interactive" "$CODEX_ROOT/skills/playwright-interactive" || unhealthy=1
-  compare_path "$ASSETS_DIR/superpowers/skills/brainstorming/SKILL.md" "$CODEX_ROOT/superpowers/skills/brainstorming/SKILL.md" || unhealthy=1
-  compare_path "$ASSETS_DIR/superpowers/skills/writing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/writing-plans/SKILL.md" || unhealthy=1
-  compare_path "$ASSETS_DIR/superpowers/skills/executing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/executing-plans/SKILL.md" || unhealthy=1
-  compare_path "$ASSETS_DIR/superpowers/skills/subagent-driven-development" "$CODEX_ROOT/superpowers/skills/subagent-driven-development" || unhealthy=1
-  compare_path "$ASSETS_DIR/superpowers/skills/requesting-code-review" "$CODEX_ROOT/superpowers/skills/requesting-code-review" || unhealthy=1
+  if compare_path "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js" "$openspec_root/dist/core/config-prompts.js"; then ((healthy+=1)); else unhealthy=1; fi
+  if compare_path "$ASSETS_DIR/skills/forgevia" "$CODEX_ROOT/skills/forgevia"; then ((healthy+=1)); else unhealthy=1; fi
+  if compare_path "$ASSETS_DIR/skills/playwright-interactive" "$CODEX_ROOT/skills/playwright-interactive"; then ((healthy+=1)); else unhealthy=1; fi
+  if compare_path "$ASSETS_DIR/superpowers/skills/brainstorming/SKILL.md" "$CODEX_ROOT/superpowers/skills/brainstorming/SKILL.md"; then ((healthy+=1)); else unhealthy=1; fi
+  if compare_path "$ASSETS_DIR/superpowers/skills/writing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/writing-plans/SKILL.md"; then ((healthy+=1)); else unhealthy=1; fi
+  if compare_path "$ASSETS_DIR/superpowers/skills/executing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/executing-plans/SKILL.md"; then ((healthy+=1)); else unhealthy=1; fi
+  if compare_path "$ASSETS_DIR/superpowers/skills/subagent-driven-development" "$CODEX_ROOT/superpowers/skills/subagent-driven-development"; then ((healthy+=1)); else unhealthy=1; fi
+  if compare_path "$ASSETS_DIR/superpowers/skills/requesting-code-review" "$CODEX_ROOT/superpowers/skills/requesting-code-review"; then ((healthy+=1)); else unhealthy=1; fi
+
+  echo "📋 Summary"
+  echo "💚 Healthy assets: $healthy"
+  if [[ "$unhealthy" -ne 0 ]]; then
+    echo "💥 Unhealthy assets detected"
+  else
+    echo "✨ No drift detected"
+  fi
 
   if [[ "$unhealthy" -ne 0 ]]; then
     echo "Forgevia Codex doctor found missing or drifted managed assets" >&2

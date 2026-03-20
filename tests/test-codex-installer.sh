@@ -58,9 +58,16 @@ mkdir -p "$CODEX_HOME/superpowers/skills/requesting-code-review"
 mkdir -p "$OPENSPEC_ROOT/dist/core"
 printf 'export function serializeConfig() { return \"wrong\"; }\n' > "$OPENSPEC_ROOT/dist/core/config-prompts.js"
 
-"$INSTALLER"
+installer_output="$("$INSTALLER")"
+assert_contains "$installer_output" "🧱 Forgevia Codex installer"
+assert_contains "$installer_output" "✅ Applied openspec override"
+assert_contains "$installer_output" "✅ Applied Forgevia-managed Codex assets"
+assert_contains "$installer_output" "🎉 Forgevia Codex install complete"
 
 doctor_output="$("$DOCTOR")"
+assert_contains "$doctor_output" "🔎 Forgevia Codex doctor"
+assert_contains "$doctor_output" "✅ OK"
+assert_contains "$doctor_output" "📋 Summary"
 assert_contains "$doctor_output" "Forgevia Codex doctor passed"
 assert_contains "$doctor_output" "$OPENSPEC_ROOT/dist/core/config-prompts.js"
 
@@ -76,6 +83,7 @@ drift_status=$?
 set -e
 
 assert_exit_code "$drift_status" "1"
-assert_contains "$drift_output" "DRIFT"
+assert_contains "$drift_output" "❌ DRIFT"
+assert_contains "$drift_output" "📋 Summary"
 
 echo "codex installer smoke test passed"

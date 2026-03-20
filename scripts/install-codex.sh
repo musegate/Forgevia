@@ -29,6 +29,18 @@ Behavior:
 EOF
 }
 
+log_info() {
+  echo "ℹ️  $1"
+}
+
+log_step() {
+  echo "🧱 $1"
+}
+
+log_success() {
+  echo "✅ $1"
+}
+
 require_command() {
   local command_name="$1"
   if ! command -v "$command_name" >/dev/null 2>&1; then
@@ -48,12 +60,13 @@ copy_path() {
 
 install_openspec_if_missing() {
   if command -v openspec >/dev/null 2>&1; then
-    echo "openspec already installed: $(command -v openspec)"
+    log_info "openspec already installed: $(command -v openspec)"
     return
   fi
 
-  echo "openspec not found; installing with npm"
+  log_step "openspec not found; installing with npm"
   npm install -g @fission-ai/openspec@latest
+  log_success "Installed openspec from npm"
 }
 
 resolve_openspec_root() {
@@ -82,7 +95,7 @@ EOF
 }
 
 overlay_assets() {
-  echo "overlaying Forgevia-managed assets into $CODEX_ROOT"
+  log_step "Overlaying Forgevia-managed assets into $CODEX_ROOT"
 
   copy_path "$ASSETS_DIR/skills/forgevia" "$CODEX_ROOT/skills/forgevia"
   copy_path "$ASSETS_DIR/skills/playwright-interactive" "$CODEX_ROOT/skills/playwright-interactive"
@@ -91,6 +104,7 @@ overlay_assets() {
   copy_path "$ASSETS_DIR/superpowers/skills/executing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/executing-plans/SKILL.md"
   copy_path "$ASSETS_DIR/superpowers/skills/subagent-driven-development" "$CODEX_ROOT/superpowers/skills/subagent-driven-development"
   copy_path "$ASSETS_DIR/superpowers/skills/requesting-code-review" "$CODEX_ROOT/superpowers/skills/requesting-code-review"
+  log_success "Applied Forgevia-managed Codex assets"
 }
 
 overlay_openspec_assets() {
@@ -103,6 +117,7 @@ overlay_openspec_assets() {
   fi
 
   copy_path "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js" "$openspec_root/dist/core/config-prompts.js"
+  log_success "Applied openspec override: $openspec_root/dist/core/config-prompts.js"
 }
 
 main() {
@@ -126,6 +141,7 @@ main() {
     esac
   done
 
+  log_step "Forgevia Codex installer"
   require_command cp
   require_command rm
   require_command mkdir
@@ -141,9 +157,10 @@ main() {
 
   mkdir -p "$CODEX_ROOT/skills"
   verify_superpowers_present
+  log_success "Detected upstream superpowers at $CODEX_ROOT/superpowers"
   overlay_assets
 
-  echo "Forgevia Codex install complete"
+  echo "🎉 Forgevia Codex install complete"
 }
 
 main "$@"
