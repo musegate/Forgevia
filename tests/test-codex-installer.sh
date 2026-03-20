@@ -24,6 +24,14 @@ test_file_exists() {
   fi
 }
 
+test_path_not_exists() {
+  local path="$1"
+  if [[ -e "$path" ]]; then
+    echo "expected path to not exist: $path" >&2
+    exit 1
+  fi
+}
+
 assert_exit_code() {
   local actual="$1"
   local expected="$2"
@@ -71,14 +79,10 @@ assert_contains "$installer_output" "✅ Applied Forgevia-managed Codex assets"
 assert_contains "$installer_output" "💾 Backed up"
 assert_contains "$installer_output" "🎉 Forgevia Codex install complete"
 
-test_file_exists "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md.forgevia.bak"
-assert_contains "$(cat "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md.forgevia.bak")" "user local brainstorming"
-test_file_exists "$CODEX_HOME/superpowers/skills/test-driven-development/SKILL.md.forgevia.bak"
-assert_contains "$(cat "$CODEX_HOME/superpowers/skills/test-driven-development/SKILL.md.forgevia.bak")" "user local tdd"
-test_file_exists "$OPENSPEC_ROOT/dist/core/config-prompts.js.forgevia.bak"
-assert_contains "$(cat "$OPENSPEC_ROOT/dist/core/config-prompts.js.forgevia.bak")" "wrong"
-test_file_exists "$OPENSPEC_ROOT/dist/core/templates/workflows/propose.js.forgevia.bak"
-assert_contains "$(cat "$OPENSPEC_ROOT/dist/core/templates/workflows/propose.js.forgevia.bak")" "wrong"
+test_path_not_exists "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md.forgevia.bak"
+test_path_not_exists "$CODEX_HOME/superpowers/skills/test-driven-development/SKILL.md.forgevia.bak"
+test_path_not_exists "$OPENSPEC_ROOT/dist/core/config-prompts.js.forgevia.bak"
+test_path_not_exists "$OPENSPEC_ROOT/dist/core/templates/workflows/propose.js.forgevia.bak"
 test_file_exists "$CODEX_HOME/skills/mermaid-diagram-specialist/SKILL.md"
 test_file_exists "$CODEX_HOME/skills/forgevia/SKILL.md"
 test_file_exists "$CODEX_HOME/skills/forgevia-init/SKILL.md"
@@ -122,7 +126,9 @@ assert_contains "$drift_output" "📋 Summary"
 
 repair_output="$("$DOCTOR" --repair)"
 assert_contains "$repair_output" "🛠️ Repairing drifted or missing assets"
+assert_contains "$repair_output" "💾 Backed up"
 assert_contains "$repair_output" "✅ Repaired"
+test_path_not_exists "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md.forgevia.bak"
 
 post_repair_output="$("$DOCTOR")"
 assert_contains "$post_repair_output" "✨ No drift detected"

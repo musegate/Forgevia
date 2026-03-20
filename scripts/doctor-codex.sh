@@ -109,6 +109,13 @@ backup_target_if_present() {
   log_backup "Backed up $target_path -> $backup_path"
 }
 
+remove_stale_backup() {
+  local target_path="$1"
+  local backup_path="${target_path}.forgevia.bak"
+
+  rm -rf "$backup_path"
+}
+
 repair_path() {
   local source_path="$1"
   local target_path="$2"
@@ -117,6 +124,7 @@ repair_path() {
   backup_target_if_present "$target_path"
   rm -rf "$target_path"
   cp -R "$source_path" "$target_path"
+  remove_stale_backup "$target_path"
   log_success "Repaired $target_path"
 }
 

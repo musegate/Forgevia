@@ -75,12 +75,20 @@ backup_target_if_present() {
   log_backup "Backed up $target_path -> $backup_path"
 }
 
+remove_stale_backup() {
+  local target_path="$1"
+  local backup_path="${target_path}.forgevia.bak"
+
+  rm -rf "$backup_path"
+}
+
 sync_path() {
   local source_path="$1"
   local target_path="$2"
 
   backup_target_if_present "$target_path"
   copy_path "$source_path" "$target_path"
+  remove_stale_backup "$target_path"
 }
 
 install_openspec_if_missing() {
