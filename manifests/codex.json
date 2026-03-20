@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "platform": "codex",
+  "managedRoot": "~/.codex",
+  "sources": {
+    "openspec": {
+      "type": "npm",
+      "package": "@fission-ai/openspec",
+      "version": "latest",
+      "install": "npm install -g @fission-ai/openspec@latest"
+    },
+    "superpowers": {
+      "type": "upstream-install-doc",
+      "url": "https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.codex/INSTALL.md",
+      "notes": "Forgevia relies on upstream superpowers installation, then overlays managed customizations."
+    }
+  },
+  "managedAssets": [
+    {
+      "id": "forgevia-skill",
+      "source": "assets/codex/skills/forgevia/SKILL.md",
+      "target": "~/.codex/skills/forgevia/SKILL.md",
+      "owner": "forgevia",
+      "kind": "skill"
+    },
+    {
+      "id": "playwright-interactive-skill",
+      "source": "assets/codex/skills/playwright-interactive",
+      "target": "~/.codex/skills/playwright-interactive",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "brainstorming-skill",
+      "source": "assets/codex/superpowers/skills/brainstorming/SKILL.md",
+      "target": "~/.codex/superpowers/skills/brainstorming/SKILL.md",
+      "owner": "forgevia",
+      "kind": "superpowers-override",
+      "upstream": "superpowers"
+    },
+    {
+      "id": "writing-plans-skill",
+      "source": "assets/codex/superpowers/skills/writing-plans/SKILL.md",
+      "target": "~/.codex/superpowers/skills/writing-plans/SKILL.md",
+      "owner": "forgevia",
+      "kind": "superpowers-override",
+      "upstream": "superpowers"
+    },
+    {
+      "id": "subagent-driven-development-skill",
+      "source": "assets/codex/superpowers/skills/subagent-driven-development",
+      "target": "~/.codex/superpowers/skills/subagent-driven-development",
+      "owner": "forgevia",
+      "kind": "superpowers-override",
+      "upstream": "superpowers"
+    },
+    {
+      "id": "requesting-code-review-skill",
+      "source": "assets/codex/superpowers/skills/requesting-code-review",
+      "target": "~/.codex/superpowers/skills/requesting-code-review",
+      "owner": "forgevia",
+      "kind": "superpowers-override",
+      "upstream": "superpowers"
+    },
+    {
+      "id": "executing-plans-skill",
+      "source": "assets/codex/superpowers/skills/executing-plans/SKILL.md",
+      "target": "~/.codex/superpowers/skills/executing-plans/SKILL.md",
+      "owner": "forgevia",
+      "kind": "superpowers-override",
+      "upstream": "superpowers"
+    }
+  ]
+}
