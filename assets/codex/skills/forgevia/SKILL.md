@@ -93,7 +93,8 @@ Purpose:
 
 Behavior:
 - verify the named change exists and is not already archived
-- route to the archive flow
+- sync the change's delta specs into the main specs first
+- only then route to the archive flow
 - do not auto-select a change
 
 ### `Forgevia tasks`
