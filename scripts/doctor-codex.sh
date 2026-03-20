@@ -155,6 +155,7 @@ main() {
   for pair in \
     "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js::$openspec_root/dist/core/config-prompts.js" \
     "$ASSETS_DIR/skills/forgevia::$CODEX_ROOT/skills/forgevia" \
+    "$ASSETS_DIR/skills/mermaid-diagram-specialist::$CODEX_ROOT/skills/mermaid-diagram-specialist" \
     "$ASSETS_DIR/skills/playwright-interactive::$CODEX_ROOT/skills/playwright-interactive" \
     "$ASSETS_DIR/superpowers/skills/brainstorming/SKILL.md::$CODEX_ROOT/superpowers/skills/brainstorming/SKILL.md" \
     "$ASSETS_DIR/superpowers/skills/writing-plans/SKILL.md::$CODEX_ROOT/superpowers/skills/writing-plans/SKILL.md" \

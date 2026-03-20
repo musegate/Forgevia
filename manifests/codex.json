@@ -32,6 +32,13 @@
       "kind": "skill"
     },
     {
+      "id": "mermaid-diagram-specialist-skill",
+      "source": "assets/codex/skills/mermaid-diagram-specialist",
+      "target": "~/.codex/skills/mermaid-diagram-specialist",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
       "id": "playwright-interactive-skill",
       "source": "assets/codex/skills/playwright-interactive",
       "target": "~/.codex/skills/playwright-interactive",

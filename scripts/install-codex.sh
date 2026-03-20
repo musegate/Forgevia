@@ -123,6 +123,7 @@ overlay_assets() {
   log_step "Overlaying Forgevia-managed assets into $CODEX_ROOT"
 
   sync_path "$ASSETS_DIR/skills/forgevia" "$CODEX_ROOT/skills/forgevia"
+  sync_path "$ASSETS_DIR/skills/mermaid-diagram-specialist" "$CODEX_ROOT/skills/mermaid-diagram-specialist"
   sync_path "$ASSETS_DIR/skills/playwright-interactive" "$CODEX_ROOT/skills/playwright-interactive"
   sync_path "$ASSETS_DIR/superpowers/skills/brainstorming/SKILL.md" "$CODEX_ROOT/superpowers/skills/brainstorming/SKILL.md"
   sync_path "$ASSETS_DIR/superpowers/skills/writing-plans/SKILL.md" "$CODEX_ROOT/superpowers/skills/writing-plans/SKILL.md"

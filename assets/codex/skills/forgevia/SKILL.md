@@ -30,14 +30,118 @@ If required pieces are missing, stop and tell the user which installation or doc
 
 ## Workflow
 
-### 1. Select the OpenSpec entrypoint
+Forgevia should behave like an explicit command router. The user is expected to name the Forgevia action they want.
 
-Choose the correct OpenSpec entry:
+## Commands
 
-- idea exploration -> `openspec-explore`
-- new work with enough clarity -> `openspec-propose`
-- existing change implementation -> apply flow plus plan execution
-- finished change -> archive flow
+### `Forgevia init`
+
+Purpose:
+- check the global Forgevia environment
+- check whether the target repository already has OpenSpec initialization
+- invoke `openspec init` only when initialization is missing
+
+Behavior:
+- route to Forgevia's environment checks and bootstrap flow
+- do not take ownership of project source files
+
+### `Forgevia doctor`
+
+Purpose:
+- inspect the current Codex environment for missing or drifted Forgevia-managed assets
+
+Behavior:
+- use the Forgevia doctor flow
+- report `OK`, `MISS`, or `DRIFT`
+
+### `Forgevia repair`
+
+Purpose:
+- repair missing or drifted Forgevia-managed assets
+
+Behavior:
+- use the Forgevia repair flow
+- preserve backups before replacement
+
+### `Forgevia implement <change>`
+
+This command MUST include an explicit active change name or directory.
+
+Purpose:
+- execute development for a specific unarchived OpenSpec change
+
+Required checks:
+- the change exists under `openspec/changes/`
+- the change is not already archived
+- the change has a `tasks.md`
+
+Behavior:
+- treat the named change as the source of truth
+- use the Forgevia-modified superpowers path
+- require TDD-oriented implementation
+- prefer `subagent-driven-development` or `executing-plans` based on the task structure
+- use `requesting-code-review` at dependency-ready checkpoints
+- require `playwright-interactive` before completion if the work affects web behavior
+
+Do not guess the change from conversation context when this command is used.
+
+### `Forgevia archive <change>`
+
+This command MUST include an explicit change name or directory.
+
+Purpose:
+- archive a specific unarchived OpenSpec change
+
+Behavior:
+- verify the named change exists and is not already archived
+- route to the archive flow
+- do not auto-select a change
+
+### `Forgevia tasks`
+
+Purpose:
+- list unfinished tasks across all active, unarchived changes
+
+Behavior:
+- list active changes by creation time ascending
+- show only unfinished checklist items
+- use this as the default read-only task overview command
+
+### `Forgevia checkTask`
+
+Purpose:
+- alias for `Forgevia tasks`
+
+Behavior:
+- same as `Forgevia tasks`
+
+### `Forgevia review`
+
+Purpose:
+- force an explicit code review checkpoint
+
+Behavior:
+- route to `requesting-code-review`
+
+### `Forgevia verify-web`
+
+Purpose:
+- force explicit browser validation for a web-facing change
+
+Behavior:
+- route to `playwright-interactive`
+
+### `Forgevia draw`
+
+Purpose:
+- use Mermaid Diagram Specialist together with user-provided 功能/链路/接口信息 to generate a complete interaction-module sequence diagram
+
+Behavior:
+- route to `mermaid-diagram-specialist`
+- prefer a Mermaid sequence diagram for the interaction module
+- write a timestamped `.mdd`
+- render a matching `.svg`
+- name outputs as `YYYYMMDD-HHMMSS-功能`
 
 ### 2. Use the Forgevia-modified superpowers path
 

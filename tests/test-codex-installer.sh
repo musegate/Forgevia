@@ -71,6 +71,7 @@ test_file_exists "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md.forgevia
 assert_contains "$(cat "$CODEX_HOME/superpowers/skills/brainstorming/SKILL.md.forgevia.bak")" "user local brainstorming"
 test_file_exists "$OPENSPEC_ROOT/dist/core/config-prompts.js.forgevia.bak"
 assert_contains "$(cat "$OPENSPEC_ROOT/dist/core/config-prompts.js.forgevia.bak")" "wrong"
+test_file_exists "$CODEX_HOME/skills/mermaid-diagram-specialist/SKILL.md"
 
 doctor_output="$("$DOCTOR")"
 assert_contains "$doctor_output" "🔎 Forgevia Codex doctor"
