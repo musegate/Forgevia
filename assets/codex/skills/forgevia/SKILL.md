@@ -150,8 +150,9 @@ Purpose:
 Behavior:
 - route to `mermaid-diagram-specialist`
 - prefer a Mermaid sequence diagram for the interaction module
-- write a timestamped `.mdd`
-- render a matching `.svg`
+- pass the Mermaid output to `forgevia-draw.sh`
+- write a timestamped `.mmd`
+- render a matching `.svg`, preferring a local Chrome/Chromium executable for `mmdc` when available
 - name outputs as `YYYYMMDD-HHMMSS-功能`
 
 ### 2. Use the Forgevia-modified superpowers path

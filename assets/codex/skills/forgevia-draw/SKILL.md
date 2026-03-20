@@ -15,6 +15,7 @@ Use this skill when the user explicitly asks Forgevia to draw an interaction seq
 
 - Route content generation to `mermaid-diagram-specialist`.
 - Prefer a complete interaction-module sequence diagram.
+- Hand the Mermaid output to `forgevia-draw.sh`.
 - Write a timestamped `.mmd`.
-- Render a matching `.svg`.
+- Render a matching `.svg`, preferring a local Chrome/Chromium executable for `mmdc` when available.
 - Name outputs as `YYYYMMDD-HHMMSS-功能`.
