@@ -113,8 +113,12 @@ Purpose:
 - think through a requirement before implementation
 
 Behavior:
-- route to `openspec-explore`
-- use the user's requirement input as the exploration prompt
+- create or reuse `openspec/think/` for think artifacts
+- restate the requirement and current understanding first
+- wait for explicit user confirmation before moving into proposal or implementation
+- write the confirmed think result to a dated Markdown file under `openspec/think/`
+- version repeated iterations of the same requirement with `-v2`, `-v3`, and so on
+- use the requirement input, related notes, and `.mmd` design flow as the exploration prompt when available
 
 ### `Forgevia propose`
 

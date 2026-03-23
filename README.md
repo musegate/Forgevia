@@ -44,7 +44,7 @@ Forgevia 是一套面向 agent coding 的工作流整合方案。
 4. `Forgevia draw`
    适合在正式思考和开发前先做设计可视化。它可以围绕指定功能、接口或链路画出时序图、UML 图和泳道图SVG文件。生成的 `.mmd` 文件可以作为后续 `think` 的参考输入，同时也会渲染出可供开发参考的 SVG 矢量图，可直接用 Chrome 打开查看；当某个功能、接口或链路发生变化后，建议及时同步更新设计图、`.mmd` 和 SVG，让设计表达始终与实现保持一致。
 5. `Forgevia think`
-   在正式开发前先用它梳理需求。你可以直接说出一个模糊的想法，也可以提供更详细的说明，例如带上 `draw` 生成的 `.mmd` 流程图，或者直接输入完整的需求文档。输入越详细，后续分析和方案收敛通常会越准确。它会帮助你明确目标、范围、边界条件和潜在风险，把模糊想法收敛成可执行的问题定义。
+   在正式开发前先用它梳理需求。你可以直接说出一个模糊的想法，也可以提供更详细的说明，例如带上 `draw` 生成的 `.mmd` 流程图，或者直接输入完整的需求文档。输入越详细，后续分析和方案收敛通常会越准确。它会先重述你的需求并给出理解，等你确认后，再把本次结果沉淀为 `openspec/think/` 下的 Markdown 文件；文件名会以当天日期开头，相同需求会按 `v2`、`v3` 持续迭代。
 6. `Forgevia propose`
    用它把需求描述或指定文件生成成一个新的 change。你可以直接输入刚刚 `think` 之后你已经满意的结果，也可以跳过前一步，直接提供一份你认为已经足够完整、足够满意的 request，这个由你自己决定。输出会形成一个有名字的交付单元，包含清晰范围、说明文档和可执行任务拆分。
 7. `Forgevia tasks`
@@ -112,7 +112,7 @@ Claude is not supported yet.
 4. `Forgevia draw`
    Use this when the team needs a visual design aid before implementation. It can generate sequence diagrams, UML-style diagrams, and swimlane diagrams for a specific feature, interface, or flow. The generated `.mmd` file can be used as reference input for the later thinking and planning steps, and Forgevia also renders an SVG vector diagram that can be opened in Chrome and used as a visual reference during development. When a feature, interface, or flow changes, update the design diagram, `.mmd`, and SVG promptly so the visual design stays aligned with implementation.
 5. `Forgevia think`
-   Use this before building to clarify the request. You can start with a rough idea, provide a more detailed description, attach the `.mmd` flow produced by `draw`, or supply a full requirements document. In general, the more concrete the input is, the more precise the resulting analysis and direction will be. It helps define boundaries, identify risks, and turn a vague idea into a concrete implementation target.
+   Use this before building to clarify the request. You can start with a rough idea, provide a more detailed description, attach the `.mmd` flow produced by `draw`, or supply a full requirements document. In general, the more concrete the input is, the more precise the resulting analysis and direction will be. Forgevia first restates the request and its understanding, waits for your confirmation, and then writes the result to a Markdown file under `openspec/think/`; filenames start with the current date, and repeated iterations of the same requirement continue as `v2`, `v3`, and so on.
 6. `Forgevia propose`
    Use this to generate a new change from a requirement or an input file. You can feed in the result you are happy with after `think`, or skip that step and provide a request that you already consider complete and ready. That choice is up to you. The output is a named implementation unit with clear scope, documentation, and executable task breakdown.
 7. `Forgevia tasks`
