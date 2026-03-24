@@ -204,12 +204,13 @@ missing_openspec_output="$(PATH="$node_dir:$npm_dir:/usr/bin:/bin" "$INSTALLER" 
 missing_openspec_status=$?
 set -e
 
-if [[ "$missing_openspec_status" != "1" ]]; then
-  echo "expected missing openspec exit code 1 but got $missing_openspec_status" >&2
+if [[ "$missing_openspec_status" != "0" ]]; then
+  echo "expected missing openspec exit code 0 but got $missing_openspec_status" >&2
   exit 1
 fi
-assert_contains "$missing_openspec_output" "openspec is not installed or not on PATH"
-assert_contains "$missing_openspec_output" "--install-openspec"
+assert_contains "$missing_openspec_output" "openspec not found; skipping Forgevia-managed openspec overrides"
+assert_contains "$missing_openspec_output" "Applied Forgevia-managed Claude assets"
+assert_contains "$missing_openspec_output" "Applied Forgevia-managed Claude superpowers overrides"
 
 missing_plugin_dir="$(mktemp -d)"
 trap 'rm -rf "$tmp_dir" "$missing_openspec_dir" "$missing_plugin_dir"' EXIT

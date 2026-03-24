@@ -22,7 +22,7 @@ This path installs Forgevia-managed Claude skills and commands into `~/.claude` 
 - `openspec` must be available on `PATH`
 - the Claude superpowers plugin must already be installed
 
-If `openspec` is missing, either install it yourself with `npm install -g @fission-ai/openspec@latest` or let the installer do it with `--install-openspec`.
+If `openspec` is missing, either install it yourself with `npm install -g @fission-ai/openspec@latest` or let the installer do it with `--install-openspec`. Without `openspec`, the installer will still apply Claude skills and superpowers overrides, but it will skip the Forgevia-managed OpenSpec overrides.
 
 In Claude Code, register the marketplace first:
 
@@ -93,6 +93,12 @@ Or run it directly yourself:
 ```bash
 git clone https://github.com/Cooooooody/Forgevia.git
 cd Forgevia
+bash scripts/install-claude.sh
+```
+
+If you also want the installer to bootstrap `openspec` when missing, use:
+
+```bash
 bash scripts/install-claude.sh --install-openspec
 ```
 

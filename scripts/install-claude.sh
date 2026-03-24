@@ -160,19 +160,10 @@ install_openspec_if_missing() {
 
 verify_openspec_present() {
   if command -v openspec >/dev/null 2>&1 || [[ -n "$OPENSPEC_ROOT" ]]; then
-    return
+    return 0
   fi
 
-  cat >&2 <<EOF
-openspec is not installed or not on PATH.
-
-Install it first with:
-  npm install -g @fission-ai/openspec@latest
-
-Or rerun this installer with:
-  $(basename "$0") --install-openspec
-EOF
-  exit 1
+  return 1
 }
 
 sync_path() {
@@ -279,8 +270,11 @@ main() {
     install_openspec_if_missing
   fi
 
-  verify_openspec_present
-  overlay_openspec_assets
+  if verify_openspec_present; then
+    overlay_openspec_assets
+  else
+    log_info "openspec not found; skipping Forgevia-managed openspec overrides"
+  fi
 
   overlay_assets
   local superpowers_root
