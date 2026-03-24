@@ -17,40 +17,8 @@ Forgevia 是一套面向 agent coding 的工作流整合方案。
 直接对 Claude 说：
 
 ```text
-Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.claude.md
+帮我安装，交互过程请使用中文：Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.claude.md
 ```
-
-当前 Claude 安装会提供：
-
-- Forgevia skills：
-  - `forgevia`
-  - `forgevia-init`
-  - `forgevia-doctor`
-  - `forgevia-repair`
-  - `forgevia-draw`
-  - `forgevia-think`
-  - `forgevia-propose`
-  - `forgevia-implement`
-  - `forgevia-tasks`
-  - `forgevia-review`
-  - `forgevia-verify-web`
-  - `forgevia-archive`
-- OpenSpec support skills：
-  - `openspec-explore`
-  - `openspec-propose`
-  - `openspec-apply-change`
-  - `openspec-archive-change`
-- Helper skills：
-  - `mermaid-diagram-specialist`
-  - `playwright-interactive`
-- Forgevia-managed overrides for Claude superpowers:
-  - `brainstorming`
-  - `writing-plans`
-  - `test-driven-development`
-  - `subagent-driven-development`
-  - `requesting-code-review`
-  - `executing-plans`
-- `opsx` commands under `~/.claude/commands`
 
 ## 技能能力
 
@@ -125,40 +93,6 @@ Tell Claude:
 ```text
 Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.claude.md
 ```
-
-Claude installation expects `openspec` plus the Claude superpowers plugin, and the recommended project bootstrap path is `openspec init --tools codex,claude` when the repository should support both clients.
-
-Current Claude install includes:
-
-- Forgevia skills:
-  - `forgevia`
-  - `forgevia-init`
-  - `forgevia-doctor`
-  - `forgevia-repair`
-  - `forgevia-draw`
-  - `forgevia-think`
-  - `forgevia-propose`
-  - `forgevia-implement`
-  - `forgevia-tasks`
-  - `forgevia-review`
-  - `forgevia-verify-web`
-  - `forgevia-archive`
-- OpenSpec support skills:
-  - `openspec-explore`
-  - `openspec-propose`
-  - `openspec-apply-change`
-  - `openspec-archive-change`
-- Helper skills:
-  - `mermaid-diagram-specialist`
-  - `playwright-interactive`
-- Forgevia-managed overrides for Claude superpowers:
-  - `brainstorming`
-  - `writing-plans`
-  - `test-driven-development`
-  - `subagent-driven-development`
-  - `requesting-code-review`
-  - `executing-plans`
-- `opsx` commands under `~/.claude/commands`
 
 ## Skills
 
