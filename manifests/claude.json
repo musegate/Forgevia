@@ -2,13 +2,163 @@
   "version": 1,
   "platform": "claude",
   "managedRoot": "~/.claude",
+  "sources": {
+    "openspec": {
+      "type": "npm",
+      "package": "@fission-ai/openspec",
+      "version": "latest",
+      "install": "npm install -g @fission-ai/openspec@latest"
+    }
+  },
   "managedAssets": [
+    {
+      "id": "openspec-config-prompts",
+      "source": "assets/openspec/dist/core/config-prompts.js",
+      "target": "<openspec-root>/dist/core/config-prompts.js",
+      "owner": "forgevia",
+      "kind": "openspec-override",
+      "upstream": "openspec"
+    },
+    {
+      "id": "openspec-propose-workflow",
+      "source": "assets/openspec/dist/core/templates/workflows/propose.js",
+      "target": "<openspec-root>/dist/core/templates/workflows/propose.js",
+      "owner": "forgevia",
+      "kind": "openspec-override",
+      "upstream": "openspec"
+    },
+    {
+      "id": "openspec-apply-change-skill",
+      "source": ".claude/skills/openspec-apply-change",
+      "target": "~/.claude/skills/openspec-apply-change",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "openspec-archive-change-skill",
+      "source": ".claude/skills/openspec-archive-change",
+      "target": "~/.claude/skills/openspec-archive-change",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "openspec-explore-skill",
+      "source": ".claude/skills/openspec-explore",
+      "target": "~/.claude/skills/openspec-explore",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "openspec-propose-skill",
+      "source": ".claude/skills/openspec-propose",
+      "target": "~/.claude/skills/openspec-propose",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-skill",
+      "source": ".claude/skills/forgevia",
+      "target": "~/.claude/skills/forgevia",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-archive-skill",
+      "source": ".claude/skills/forgevia-archive",
+      "target": "~/.claude/skills/forgevia-archive",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-doctor-skill",
+      "source": ".claude/skills/forgevia-doctor",
+      "target": "~/.claude/skills/forgevia-doctor",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-draw-skill",
+      "source": ".claude/skills/forgevia-draw",
+      "target": "~/.claude/skills/forgevia-draw",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-implement-skill",
+      "source": ".claude/skills/forgevia-implement",
+      "target": "~/.claude/skills/forgevia-implement",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-init-skill",
+      "source": ".claude/skills/forgevia-init",
+      "target": "~/.claude/skills/forgevia-init",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-propose-skill",
+      "source": ".claude/skills/forgevia-propose",
+      "target": "~/.claude/skills/forgevia-propose",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-repair-skill",
+      "source": ".claude/skills/forgevia-repair",
+      "target": "~/.claude/skills/forgevia-repair",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-review-skill",
+      "source": ".claude/skills/forgevia-review",
+      "target": "~/.claude/skills/forgevia-review",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-tasks-skill",
+      "source": ".claude/skills/forgevia-tasks",
+      "target": "~/.claude/skills/forgevia-tasks",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
     {
       "id": "forgevia-think-skill",
       "source": ".claude/skills/forgevia-think",
       "target": "~/.claude/skills/forgevia-think",
       "owner": "forgevia",
       "kind": "skill-directory"
+    },
+    {
+      "id": "forgevia-verify-web-skill",
+      "source": ".claude/skills/forgevia-verify-web",
+      "target": "~/.claude/skills/forgevia-verify-web",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "mermaid-diagram-specialist-skill",
+      "source": ".claude/skills/mermaid-diagram-specialist",
+      "target": "~/.claude/skills/mermaid-diagram-specialist",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "playwright-interactive-skill",
+      "source": ".claude/skills/playwright-interactive",
+      "target": "~/.claude/skills/playwright-interactive",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "opsx-commands",
+      "source": ".claude/commands/opsx",
+      "target": "~/.claude/commands/opsx",
+      "owner": "forgevia",
+      "kind": "command-directory"
     },
     {
       "id": "claude-brainstorming-skill",
@@ -22,6 +172,14 @@
       "id": "claude-writing-plans-skill",
       "source": "assets/claude/superpowers/skills/writing-plans/SKILL.md",
       "target": "<claude-superpowers-root>/skills/writing-plans/SKILL.md",
+      "owner": "forgevia",
+      "kind": "superpowers-plugin-override",
+      "upstream": "superpowers-claude-plugin"
+    },
+    {
+      "id": "claude-test-driven-development-skill",
+      "source": "assets/claude/superpowers/skills/test-driven-development/SKILL.md",
+      "target": "<claude-superpowers-root>/skills/test-driven-development/SKILL.md",
       "owner": "forgevia",
       "kind": "superpowers-plugin-override",
       "upstream": "superpowers-claude-plugin"

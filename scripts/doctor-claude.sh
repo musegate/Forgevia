@@ -6,8 +6,10 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MANIFEST_PATH="$ROOT_DIR/manifests/claude.json"
 ASSETS_DIR="$ROOT_DIR/.claude"
 CLAUDE_SUPERPOWERS_ASSETS_DIR="$ROOT_DIR/assets/claude/superpowers"
+OPENSPEC_ASSETS_DIR="$ROOT_DIR/assets/openspec"
 CLAUDE_ROOT="${CLAUDE_HOME:-$HOME/.claude}"
 CLAUDE_SUPERPOWERS_ROOT="${CLAUDE_SUPERPOWERS_ROOT:-}"
+OPENSPEC_ROOT="${OPENSPEC_ROOT:-}"
 
 usage() {
   cat <<EOF
@@ -20,7 +22,8 @@ Manifest:
   $MANIFEST_PATH
 
 Checks:
-  - ~/.claude/skills/forgevia-think
+  - openspec config override
+  - Forgevia-managed Claude skills and commands under ~/.claude
   - Forgevia-managed Claude superpowers overrides
   - content drift against Forgevia-owned copies
 EOF
@@ -53,6 +56,17 @@ print_status() {
       echo "❌ DRIFT $path"
       ;;
   esac
+}
+
+resolve_openspec_root() {
+  if [[ -n "$OPENSPEC_ROOT" ]]; then
+    echo "$OPENSPEC_ROOT"
+    return
+  fi
+
+  local npm_global_root
+  npm_global_root="$(npm root -g)"
+  echo "$npm_global_root/@fission-ai/openspec"
 }
 
 resolve_superpowers_root() {
@@ -141,6 +155,32 @@ repair_path() {
   log_success "Repaired $target_path"
 }
 
+managed_skill_pairs() {
+  local source_path
+  local target_name
+
+  find "$ASSETS_DIR/skills" -mindepth 1 -maxdepth 1 -type d | sort |
+    while IFS= read -r source_path; do
+      target_name="$(basename "$source_path")"
+      echo "$source_path::$CLAUDE_ROOT/skills/$target_name"
+    done
+}
+
+managed_command_pairs() {
+  if [[ ! -d "$ASSETS_DIR/commands" ]]; then
+    return
+  fi
+
+  local source_path
+  local target_name
+
+  find "$ASSETS_DIR/commands" -mindepth 1 -maxdepth 1 -type d | sort |
+    while IFS= read -r source_path; do
+      target_name="$(basename "$source_path")"
+      echo "$source_path::$CLAUDE_ROOT/commands/$target_name"
+    done
+}
+
 main() {
   local repair_requested="false"
 
@@ -165,6 +205,7 @@ main() {
   local unhealthy=0
   local healthy=0
   local repaired=0
+  local openspec_root
   local superpowers_root
   local managed_pairs=()
 
@@ -172,6 +213,12 @@ main() {
   if [[ "$repair_requested" == "true" ]]; then
     echo "🛠️ Repairing drifted or missing assets"
   fi
+
+  openspec_root="$(resolve_openspec_root)"
+  managed_pairs+=(
+    "$OPENSPEC_ASSETS_DIR/dist/core/config-prompts.js::$openspec_root/dist/core/config-prompts.js"
+    "$OPENSPEC_ASSETS_DIR/dist/core/templates/workflows/propose.js::$openspec_root/dist/core/templates/workflows/propose.js"
+  )
 
   superpowers_root="$(resolve_superpowers_root)"
   if [[ -z "$superpowers_root" ]]; then
@@ -182,15 +229,20 @@ main() {
     managed_pairs+=(
       "$CLAUDE_SUPERPOWERS_ASSETS_DIR/skills/brainstorming/SKILL.md::$superpowers_root/skills/brainstorming/SKILL.md"
       "$CLAUDE_SUPERPOWERS_ASSETS_DIR/skills/writing-plans/SKILL.md::$superpowers_root/skills/writing-plans/SKILL.md"
+      "$CLAUDE_SUPERPOWERS_ASSETS_DIR/skills/test-driven-development/SKILL.md::$superpowers_root/skills/test-driven-development/SKILL.md"
       "$CLAUDE_SUPERPOWERS_ASSETS_DIR/skills/executing-plans/SKILL.md::$superpowers_root/skills/executing-plans/SKILL.md"
       "$CLAUDE_SUPERPOWERS_ASSETS_DIR/skills/subagent-driven-development::$superpowers_root/skills/subagent-driven-development"
       "$CLAUDE_SUPERPOWERS_ASSETS_DIR/skills/requesting-code-review::$superpowers_root/skills/requesting-code-review"
     )
   fi
 
-  managed_pairs+=(
-    "$ASSETS_DIR/skills/forgevia-think::$CLAUDE_ROOT/skills/forgevia-think"
-  )
+  while IFS= read -r pair; do
+    managed_pairs+=("$pair")
+  done < <(managed_skill_pairs)
+
+  while IFS= read -r pair; do
+    managed_pairs+=("$pair")
+  done < <(managed_command_pairs)
 
   for pair in "${managed_pairs[@]}"
   do

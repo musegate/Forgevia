@@ -23,7 +23,7 @@ Before using Forgevia, verify:
 
 - `openspec` is installed and available
 - required `superpowers` skills are installed
-- Forgevia-managed overrides are present under `~/.codex`
+- Forgevia-managed Claude assets are present under `~/.claude`
 - `playwright-interactive` is available when the work touches web behavior
 
 If required pieces are missing, stop and tell the user which installation or doctor step is needed.
@@ -40,7 +40,7 @@ Purpose:
 - check the global Forgevia environment
 - check whether the target repository already has OpenSpec initialization
 - invoke `openspec init` only when initialization is missing
-- prefer `--tools codex,claude` when the repository should support both Forgevia clients
+- for the Claude Forgevia path, prefer `--tools codex,claude`
 
 Behavior:
 - route to Forgevia's environment checks and bootstrap flow
@@ -49,7 +49,7 @@ Behavior:
 ### `Forgevia doctor`
 
 Purpose:
-- inspect the current Codex environment for missing or drifted Forgevia-managed assets
+- inspect the current Claude environment for missing or drifted Forgevia-managed assets
 
 Behavior:
 - use the Forgevia doctor flow

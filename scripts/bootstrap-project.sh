@@ -2,20 +2,38 @@
 
 set -euo pipefail
 
-DEFAULT_TOOLS="codex"
+DEFAULT_TOOLS="codex,claude"
 
 usage() {
   cat <<EOF
 Bootstrap OpenSpec in the current project.
 
 Usage:
-  $(basename "$0") [--help] [--tools codex|codex,claude] [project_dir]
+  $(basename "$0") [--help] [--tools codex|claude|codex,claude] [project_dir]
 
 Behavior:
   - checks whether OpenSpec is already initialized in the target directory
   - runs openspec init only when initialization is missing
   - does not modify project source files beyond OpenSpec's own initialization
 EOF
+}
+
+normalize_tools() {
+  local tools="$1"
+
+  case "$tools" in
+    codex|claude|codex,claude)
+      echo "$tools"
+      ;;
+    claude,codex)
+      echo "codex,claude"
+      ;;
+    *)
+      echo "unsupported --tools value: $tools" >&2
+      echo "expected one of: codex, claude, codex,claude" >&2
+      exit 1
+      ;;
+  esac
 }
 
 main() {
@@ -33,7 +51,7 @@ main() {
           echo "--tools requires a value" >&2
           exit 1
         fi
-        tools="$2"
+        tools="$(normalize_tools "$2")"
         shift 2
         ;;
       *)

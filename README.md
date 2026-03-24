@@ -20,15 +20,37 @@ Forgevia 是一套面向 agent coding 的工作流整合方案。
 Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.claude.md
 ```
 
-当前 Claude 首批支持：
+当前 Claude 安装会提供：
 
-- `forgevia-think`
+- Forgevia skills：
+  - `forgevia`
+  - `forgevia-init`
+  - `forgevia-doctor`
+  - `forgevia-repair`
+  - `forgevia-draw`
+  - `forgevia-think`
+  - `forgevia-propose`
+  - `forgevia-implement`
+  - `forgevia-tasks`
+  - `forgevia-review`
+  - `forgevia-verify-web`
+  - `forgevia-archive`
+- OpenSpec support skills：
+  - `openspec-explore`
+  - `openspec-propose`
+  - `openspec-apply-change`
+  - `openspec-archive-change`
+- Helper skills：
+  - `mermaid-diagram-specialist`
+  - `playwright-interactive`
 - Forgevia-managed overrides for Claude superpowers:
   - `brainstorming`
   - `writing-plans`
+  - `test-driven-development`
   - `subagent-driven-development`
   - `requesting-code-review`
   - `executing-plans`
+- `opsx` commands under `~/.claude/commands`
 
 ## 技能能力
 
@@ -52,7 +74,7 @@ Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/
 `forgevia` 是总入口。你只需要明确告诉 Forgevia 当前要执行哪个动作，它会把需求、开发、评审、验证和归档串成一条一致的流程。
 
 1. `Forgevia init`
-   适合在新仓库开始使用时执行。它会检查当前项目是否已具备 Forgevia 工作流所需的基础文件；如果缺失，就补齐初始化内容。
+   适合在新仓库开始使用时执行。它会检查当前项目是否已具备 Forgevia 工作流所需的基础文件；如果缺失，就补齐初始化内容。若这个仓库需要同时支持 Codex 和 Claude，建议按 `codex,claude` 初始化项目模板。
 2. `Forgevia doctor`
    用于检查全局环境状态。它会告诉你当前安装的 Forgevia 资源是否正常、缺失，或者已经发生漂移。
 3. `Forgevia repair`
@@ -104,15 +126,39 @@ Tell Claude:
 Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.claude.md
 ```
 
-Current first-pass Claude support:
+Claude installation expects `openspec` plus the Claude superpowers plugin, and the recommended project bootstrap path is `openspec init --tools codex,claude` when the repository should support both clients.
 
-- `forgevia-think`
+Current Claude install includes:
+
+- Forgevia skills:
+  - `forgevia`
+  - `forgevia-init`
+  - `forgevia-doctor`
+  - `forgevia-repair`
+  - `forgevia-draw`
+  - `forgevia-think`
+  - `forgevia-propose`
+  - `forgevia-implement`
+  - `forgevia-tasks`
+  - `forgevia-review`
+  - `forgevia-verify-web`
+  - `forgevia-archive`
+- OpenSpec support skills:
+  - `openspec-explore`
+  - `openspec-propose`
+  - `openspec-apply-change`
+  - `openspec-archive-change`
+- Helper skills:
+  - `mermaid-diagram-specialist`
+  - `playwright-interactive`
 - Forgevia-managed overrides for Claude superpowers:
   - `brainstorming`
   - `writing-plans`
+  - `test-driven-development`
   - `subagent-driven-development`
   - `requesting-code-review`
   - `executing-plans`
+- `opsx` commands under `~/.claude/commands`
 
 ## Skills
 
@@ -136,7 +182,7 @@ Current first-pass Claude support:
 `forgevia` is the top-level entry. You tell Forgevia which action to run, and it keeps the work on one consistent path from idea to completion.
 
 1. `Forgevia init`
-   Use this when starting in a new repository. It checks whether the project is ready for the Forgevia workflow and creates the required project-side workflow files only when they are missing.
+   Use this when starting in a new repository. It checks whether the project is ready for the Forgevia workflow and creates the required project-side workflow files only when they are missing. If the repository should work from both Codex and Claude, initialize the project with `codex,claude`.
 2. `Forgevia doctor`
    Use this to inspect the global environment. It reports whether the installed Forgevia assets are healthy, missing, or out of sync.
 3. `Forgevia repair`
