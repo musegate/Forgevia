@@ -14,7 +14,7 @@ This repository is GitHub-first. The initial Codex path assumes:
 - Forgevia ships and manages its own curated copies of the workflow files it wants to own
 - `~/.codex` is the primary managed global target
 
-Claude is not supported yet in the current implementation.
+Claude now has a separate install path documented in `INSTALL.claude.md`. That path currently installs `forgevia-think` plus selected Forgevia-managed overrides for installed Claude superpowers skills.
 
 ## Current Scope
 

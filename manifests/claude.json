@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "platform": "claude",
+  "managedRoot": "~/.claude",
+  "managedAssets": [
+    {
+      "id": "forgevia-think-skill",
+      "source": ".claude/skills/forgevia-think",
+      "target": "~/.claude/skills/forgevia-think",
+      "owner": "forgevia",
+      "kind": "skill-directory"
+    },
+    {
+      "id": "claude-brainstorming-skill",
+      "source": "assets/claude/superpowers/skills/brainstorming/SKILL.md",
+      "target": "<claude-superpowers-root>/skills/brainstorming/SKILL.md",
+      "owner": "forgevia",
+      "kind": "superpowers-plugin-override",
+      "upstream": "superpowers-claude-plugin"
+    },
+    {
+      "id": "claude-writing-plans-skill",
+      "source": "assets/claude/superpowers/skills/writing-plans/SKILL.md",
+      "target": "<claude-superpowers-root>/skills/writing-plans/SKILL.md",
+      "owner": "forgevia",
+      "kind": "superpowers-plugin-override",
+      "upstream": "superpowers-claude-plugin"
+    },
+    {
+      "id": "claude-subagent-driven-development-skill",
+      "source": "assets/claude/superpowers/skills/subagent-driven-development",
+      "target": "<claude-superpowers-root>/skills/subagent-driven-development",
+      "owner": "forgevia",
+      "kind": "superpowers-plugin-override",
+      "upstream": "superpowers-claude-plugin"
+    },
+    {
+      "id": "claude-requesting-code-review-skill",
+      "source": "assets/claude/superpowers/skills/requesting-code-review",
+      "target": "<claude-superpowers-root>/skills/requesting-code-review",
+      "owner": "forgevia",
+      "kind": "superpowers-plugin-override",
+      "upstream": "superpowers-claude-plugin"
+    },
+    {
+      "id": "claude-executing-plans-skill",
+      "source": "assets/claude/superpowers/skills/executing-plans/SKILL.md",
+      "target": "<claude-superpowers-root>/skills/executing-plans/SKILL.md",
+      "owner": "forgevia",
+      "kind": "superpowers-plugin-override",
+      "upstream": "superpowers-claude-plugin"
+    }
+  ]
+}

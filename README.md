@@ -12,7 +12,23 @@ Forgevia 是一套面向 agent coding 的工作流整合方案。
 帮我安装，交互过程请使用中文：Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.codex.md
 ```
 
-当前暂不支持 Claude。
+## Claude 安装方式
+
+直接对 Claude 说：
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.claude.md
+```
+
+当前 Claude 首批支持：
+
+- `forgevia-think`
+- Forgevia-managed overrides for Claude superpowers:
+  - `brainstorming`
+  - `writing-plans`
+  - `subagent-driven-development`
+  - `requesting-code-review`
+  - `executing-plans`
 
 ## 技能能力
 
@@ -80,7 +96,23 @@ Tell Codex:
 Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.codex.md
 ```
 
-Claude is not supported yet.
+## Install For Claude
+
+Tell Claude:
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.claude.md
+```
+
+Current first-pass Claude support:
+
+- `forgevia-think`
+- Forgevia-managed overrides for Claude superpowers:
+  - `brainstorming`
+  - `writing-plans`
+  - `subagent-driven-development`
+  - `requesting-code-review`
+  - `executing-plans`
 
 ## Skills
 
