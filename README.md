@@ -1,8 +1,12 @@
-[English](README.md) | [中文](README_ZH.md)
+<div align="center">
 
 # Forgevia
 
 ### A workflow bundle for Codex, Claude, and agent coding delivery
+
+[English](README.md) | [中文](README_ZH.md)
+
+</div>
 
 Forge your agent workflow into steel.
 

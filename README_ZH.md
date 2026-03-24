@@ -1,8 +1,12 @@
-[English](README.md) | 中文
+<div align="center">
 
 # Forgevia
 
 ### 面向 Codex、Claude 与 Agent Coding 交付的工作流整合方案
+
+[English](README.md) | 中文
+
+</div>
 
 把你的 agent 开发流程锻造成钢铁。
 
