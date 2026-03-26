@@ -172,16 +172,46 @@ sequenceDiagram
     participant Payment
 
     User->>Frontend: Click "Book"
+    Note right of Frontend: 校验入住日期与人数，避免提交无效订单
     Frontend->>API: POST /api/bookings
+    Note right of API: 做幂等校验，防止重复提交生成重复订单
     API->>DB: Check availability
+    Note right of DB: 加行级锁检查房态，避免并发场景超卖
     DB-->>API: Available
     API->>Payment: Process payment
+    Note right of Payment: 发起支付并等待结果，超时或失败时回滚预订
     Payment-->>API: Payment successful
     API->>DB: Create booking
     DB-->>API: Booking created
     API-->>Frontend: 201 Created
     Frontend-->>User: Show confirmation
 ```
+
+**Method Annotation Rules:**
+
+When generating sequence diagrams, annotate key methods with `Note` to
+explain their core logic, constraints, or design intent:
+
+- **Language**: Write notes in Chinese so readers can understand each key
+  step at a glance.
+- **What to annotate**: key business actions, critical intermediate steps,
+  branch decisions, validation, authentication, data transformation, state
+  changes, response assembly, concurrency controls, error handling
+  strategies, timeout policies, security checks, and non-obvious business
+  rules.
+- **What NOT to annotate**: trivial operations whose purpose is already
+  clear from the arrow label (e.g., simple getter calls, direct returns, or
+  obvious pass-through hops with no extra meaning).
+- **Placement**: use `Note right of <participant>` immediately after the
+  arrow that triggers the method; important return steps, branch outcomes,
+  and loop-internal steps may also be annotated when they carry meaningful
+  business context.
+- **Tone**: keep each note concise and explanatory; state *what* the step is
+  for or *why* it matters, not low-level implementation details.
+- **Density**: Keep the diagram readable: annotate enough to explain the
+  flow, but do not attach a note to every arrow.
+- **Priority**: prefer notes that help a new reader quickly understand the
+  function of the step over notes that merely repeat the arrow label.
 
 **Participant Types:**
 
@@ -207,12 +237,15 @@ sequenceDiagram
     participant DB
 
     User->>Frontend: Enter credentials
+    Note right of Frontend: 整理并清洗登录参数，避免脏数据进入认证链路
     Frontend->>Clerk: Login request
     Clerk->>Clerk: Validate credentials
+    Note right of Clerk: 校验账号密码并做限流，防止暴力尝试
     alt Credentials valid
         Clerk-->>Frontend: JWT token
         Frontend->>API: Request with token
         API->>Clerk: Verify token
+        Note right of API: 校验 token 是否仍有效，避免旧凭证继续访问系统
         Clerk-->>API: Token valid
         API->>DB: Fetch user data
         DB-->>API: User data
@@ -230,6 +263,8 @@ sequenceDiagram
 - [ ] Message flow logical
 - [ ] Return messages shown
 - [ ] Alt/loop blocks used correctly
+- [ ] Key methods and critical steps annotated with concise Chinese `Note`
+- [ ] Notes explain purpose or business meaning without making the diagram bloated
 
 **Output**: Sequence diagram
 
