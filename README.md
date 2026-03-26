@@ -17,7 +17,7 @@ Forgevia is an opinionated workflow bundle for agent coding.
 Tell Codex:
 
 ```text
-Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.codex.md
+Fetch and follow instructions from https://raw.githubusercontent.com/musegate/Forgevia/refs/heads/main/INSTALL.codex.md
 ```
 
 ## Install For Claude
@@ -25,7 +25,7 @@ Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/
 Tell Claude:
 
 ```text
-Fetch and follow instructions from https://raw.githubusercontent.com/Cooooooody/Forgevia/refs/heads/main/INSTALL.claude.md
+Fetch and follow instructions from https://raw.githubusercontent.com/musegate/Forgevia/refs/heads/main/INSTALL.claude.md
 ```
 
 ## Skills

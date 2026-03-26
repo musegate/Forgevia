@@ -85,13 +85,13 @@ Current behavior of the Claude superpowers overrides:
 Tell Claude:
 
 ```text
-Install openspec and the Claude superpowers plugin first. Then clone https://github.com/Cooooooody/Forgevia and run bash scripts/install-claude.sh from the repository root.
+Install openspec and the Claude superpowers plugin first. Then clone https://github.com/musegate/Forgevia and run bash scripts/install-claude.sh from the repository root.
 ```
 
 Or run it directly yourself:
 
 ```bash
-git clone https://github.com/Cooooooody/Forgevia.git
+git clone https://github.com/musegate/Forgevia.git
 cd Forgevia
 bash scripts/install-claude.sh
 ```
